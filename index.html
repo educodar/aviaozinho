@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+
+    <!--Library-->
+    <script src="scripts/lib/jquery-1.11.3.min.js"></script>
+    <script src="scripts/lib/underscore.js"></script>
+    <script src="scripts/lib/preloadjs-0.6.1.min.js"></script>
+
+    <!--Engine-->
+    <script src="scripts/engine/evento.js"></script>
+    <script src="scripts/engine/input.js"></script>
+    <script src="scripts/engine/scene.js"></script>
+    <script src="scripts/engine/scene_controle.js"></script>
+    <script src="scripts/engine/sceneHTML.js"></script>
+    <script src="scripts/engine/stage.js"></script>
+    <script src="scripts/engine/utils.js"></script>
+    <script src="scripts/engine/state.js"></script>
+    <script src="scripts/engine/stateMachine.js"></script>
+
+    <!--Jogo-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/commandInterface.js"></script>
+
+    <!--Telas-->
+    <script src="scripts/scenes/scene_main.js"></script>   
+    <script src="scripts/scenes/grid.js"></script>   
+    <script src="scripts/scenes/state_player_idle.js"></script>  
+    <script src="scripts/scenes/state_player_moving.js"></script>   
+    <script src="scripts/scenes/player.js"></script>    
+    <script src="scripts/scenes/treasure.js"></script>   
+
+    <script>
+
+        var Global = {};
+        var CI = {};
+
+        var resize = function () {
+            // TODO
+        };
+
+        $(document).ready(function () {
+
+            var app = new App();
+
+            Global.canvas = $("#canvas");
+            Global.ctx = Global.canvas[0].getContext("2d");
+            Global.width = canvas.width;
+            Global.height = canvas.height;
+
+            resize();
+
+            Global.touch = !!("ontouchstart" in window);
+            if (!Global.touch) Global.mouse = utils.captureMouse(Global.canvas[0]);
+
+            app.iniciar();
+            CI = new CommandInterface();
+            
+            window.addEventListener('resize', resize, false);
+            window.addEventListener('orientationchange', resize, false);
+
+            $( "#btnRun" ).click(function() {
+                var lines = $('#txtCommand').val().split('\n');
+                for(var i = 0 ; i < lines.length ; i++) {
+                    CI.execute(lines[i]);
+                }
+            });
+
+            $( "#btnRestart" ).click(function() {
+                Global.scene_controle.reiniciarScene();
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div id="gameArea">
+        <canvas id="canvas" width="600" height="400"></canvas>
+        <button id="btnRestart" type="button">Reiniciar</button>
+    </div>
+    <div id="commandArea">
+        <textarea id='txtCommand' rows="30" cols="50"></textarea>
+        <button id="btnRun" type="button">Executar</button>
+    </div>
+</body>
+</html>
