@@ -42,7 +42,7 @@ var CommandInterface = function() {
 
 		this.readyToExecute = false;
 
-		var andarPraFrente = function(steps) { self.movePlayerForward(steps); };
+		var andar = function(steps) { self.movePlayerForward(steps); };
 		var girar = function(angle) { self.rotatePlayer(angle); };
 		var checarTesouro = function() {self.checkTreasure(); };
 

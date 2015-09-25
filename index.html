@@ -8,7 +8,7 @@
     <!--Library-->
     <script src="scripts/lib/jquery-1.11.3.min.js"></script>
     <script src="scripts/lib/underscore.js"></script>
-    <script src="scripts/lib/preloadjs-0.6.1.min.js"></script>
+    <script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
 
     <!--Engine-->
     <script src="scripts/engine/evento.js"></script>
@@ -20,6 +20,8 @@
     <script src="scripts/engine/utils.js"></script>
     <script src="scripts/engine/state.js"></script>
     <script src="scripts/engine/stateMachine.js"></script>
+    <script src="scripts/engine/spriteData.js"></script>
+    <script src="scripts/engine/spritesheet.js"></script>
 
     <!--Jogo-->
     <script src="scripts/app.js"></script>
@@ -28,6 +30,7 @@
     <!--Telas-->
     <script src="scripts/scenes/scene_main.js"></script>   
     <script src="scripts/scenes/grid.js"></script>   
+    <script src="scripts/scenes/player_spriteData.js"></script>  
     <script src="scripts/scenes/state_player_idle.js"></script>  
     <script src="scripts/scenes/state_player_moving.js"></script>   
     <script src="scripts/scenes/player.js"></script>    
@@ -38,30 +41,34 @@
         var Global = {};
         var CI = {};
 
-        var resize = function () {
-            // TODO
-        };
-
         $(document).ready(function () {
 
             var app = new App();
+            var preload = new createjs.LoadQueue();
+            var spritesToLoad = [];
+            _.each(SpriteData.loadAll(), function(s) {
+                spritesToLoad.push({id: s.name, src: s.data.file});
+            });
+            preload.loadManifest(spritesToLoad);
 
             Global.canvas = $("#canvas");
             Global.ctx = Global.canvas[0].getContext("2d");
             Global.width = canvas.width;
             Global.height = canvas.height;
+            Global.mouse = utils.captureMouse(Global.canvas[0]);
 
-            resize();
+            function handleFileComplete(event) {
+                if (event.item.type == createjs.LoadQueue.IMAGE) {
+                    Global.images = Global.images || [];
+                    Global.images[event.item.id] = event.result;
+                }
+            }
 
-            Global.touch = !!("ontouchstart" in window);
-            if (!Global.touch) Global.mouse = utils.captureMouse(Global.canvas[0]);
-
-            app.iniciar();
-            CI = new CommandInterface();
+            function handleComplete(event) {
+                app.iniciar();
+                CI = new CommandInterface();
+            }
             
-            window.addEventListener('resize', resize, false);
-            window.addEventListener('orientationchange', resize, false);
-
             $( "#btnRun" ).click(function() {
                 var lines = $('#txtCommand').val().split('\n');
                 for(var i = 0 ; i < lines.length ; i++) {
@@ -72,6 +79,9 @@
             $( "#btnRestart" ).click(function() {
                 Global.scene_controle.reiniciarScene();
             });
+
+            preload.on("complete", handleComplete, this);
+            preload.on("fileload", handleFileComplete);
         });
 
     </script>

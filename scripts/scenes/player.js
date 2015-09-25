@@ -1,4 +1,5 @@
 
+
 var Player = function (grid) {
 
     this.id = 'player_object';
@@ -13,6 +14,8 @@ var Player = function (grid) {
     this.speed = 2;
     this.targetX;
     this.targetY;
+
+    this.spriteSheet = new Spritesheet(SpriteData.load('player_sprite'));
 
     this.setPosition(1,1);
 
@@ -49,35 +52,46 @@ Player.prototype.alterarEstado = function (state, params) {
     this.stateMachine.alterarEstado(newState, params);
 };
 
+Player.prototype.isValidPosition = function(gridPosX, gridPosY) {
+    return (gridPosX <= this.grid.xAxisSize) && (gridPosY <= this.grid.yAxisSize);
+};
+
 Player.prototype.setPosition = function(gridPosX, gridPosY) {
 
-	var gridData = this.grid.getPosition( gridPosX, gridPosY);
+    if(this.isValidPosition(gridPosX, gridPosY)) {
 
-	this.x = gridData.x;
-	this.y = gridData.y;
+    	var gridData = this.grid.getPosition( gridPosX, gridPosY);
 
-	this.gridPosX = gridPosX;
-	this.gridPosY = gridPosY;
+    	this.x = gridData.x;
+    	this.y = gridData.y;
 
-	//TODO: Tratar erro de "out of bounds"
+    	this.gridPosX = gridPosX;
+    	this.gridPosY = gridPosY;
+    } else {
+        alert('Posição: ' + gridPosX + ', ' + gridPosY + ' inválida');
+    }
 };
 
 Player.prototype.moveForward = function(steps, callback) {
     
     var nextPosition = this.getNextPosition(steps);
-    var gridData = this.grid.getPosition( nextPosition.posX, nextPosition.posY);
 
-    console.log('Movendo para a posição: ' + nextPosition.posX + ', ' + nextPosition.posY)
+    if(this.isValidPosition(nextPosition.posX, nextPosition.posY)) {
 
-    this.gridPosX = nextPosition.posX;
-    this.gridPosY = nextPosition.posY;
+        var gridData = this.grid.getPosition( nextPosition.posX, nextPosition.posY);
 
-    this.targetX = gridData.x;
-    this.targetY = gridData.y;
-    
-    this.alterarEstado(Player.states.MOVING, {callback: callback});
+        console.log('Movendo para a posição: ' + nextPosition.posX + ', ' + nextPosition.posY)
 
-    //TODO: Tratar erro de "out of bounds"
+        this.gridPosX = nextPosition.posX;
+        this.gridPosY = nextPosition.posY;
+
+        this.targetX = gridData.x;
+        this.targetY = gridData.y;
+        
+        this.alterarEstado(Player.states.MOVING, {callback: callback});
+    } else {
+        alert('Posição: ' + gridPosX + ', ' + gridPosY + ' inválida');
+    }
 };
 
 Player.prototype.rotate = function(angle, callback) {
@@ -145,7 +159,7 @@ Player.prototype.checkTreasure = function(callback) {
         setTimeout(function() {   
             callback();
         }, 500);
-        
+
     }, 500);
 };
 
@@ -155,23 +169,23 @@ Player.prototype.update = function () {
 
 Player.prototype.draw = function () {
 	
-	var size = 28;
-	var position = this.getCurrentPosition();
+	// var size = 28;
+	// var position = this.getCurrentPosition();
 
-    Global.ctx.save();
-    Global.ctx.translate(position.x, position.y);
-    Global.ctx.rotate((this.direction-90)*Math.PI/180);
-    Global.ctx.translate(-position.x, -position.y);
-    Global.ctx.translate(position.x - size*.5, position.y - size*.5);
+ //    Global.ctx.save();
+ //    Global.ctx.translate(position.x, position.y);
+ //    Global.ctx.rotate((this.direction-90)*Math.PI/180);
+ //    Global.ctx.translate(-position.x, -position.y);
+ //    Global.ctx.translate(position.x - size*.5, position.y - size*.5);
 
-    var path=new Path2D();
-    path.moveTo(0,0);
-    path.lineTo(0,size);
-    path.lineTo(size*1.2,size*.5);
+ //    var path=new Path2D();
+ //    path.moveTo(0,0);
+ //    path.lineTo(0,size);
+ //    path.lineTo(size*1.2,size*.5);
 
-    Global.ctx.fillStyle = "blue";
-    Global.ctx.fill(path);
-    Global.ctx.restore();
+ //    Global.ctx.fillStyle = "blue";
+ //    Global.ctx.fill(path);
+ //    Global.ctx.restore();
 
     this.stateMachine.draw();
 

@@ -16,12 +16,14 @@ var StatePlayerMoving = function () {
 	        vx = Math.cos(angle) * owner.speed,
 	        vy = Math.sin(angle) * owner.speed;
 
-        if(vx > 0.1 || vy > 0.1) {
+        if( (Math.abs(vx) > 0.1 || Math.abs(vy) > 0.1) && (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) ) {
 			owner.x += vx;
 			owner.y += vy;
 		} else {
 			owner.alterarEstado(Player.states.IDLE, {callback: this.callback});
 		}
+
+		owner.spriteSheet.draw(owner);
 
     };
 
