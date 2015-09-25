@@ -10,11 +10,6 @@ var Treasure = function (grid, position) {
     this.founded = false;
 
     this.setPosition(position.x, position.y);
-
-    //this.stateManager = new StateMachine(this);
-	
-	//this.alterarEstado(Adicao.estados.TERMO1, dados);
-    
 };
 
 Treasure.prototype.onRestart = function() {
@@ -27,20 +22,11 @@ Treasure.prototype.setPosition = function(gridPosX, gridPosY) {
 	this.y = gridData.y;
 	this.gridPosX = gridPosX;
 	this.gridPosY = gridPosY;
-
-	//TODO: Tratar erro de "out of bounds"
 };
 
 Treasure.prototype.found = function() {
 	if(!this.founded)
 		this.founded = true;
-};
-
-Treasure.prototype.rotate = function(angle) {
-    
-    this.direction = this.direction + angle;
-
-    //TODO: Tratar erro de "out of bounds"
 };
 
 Treasure.prototype.getCurrentPosition = function() {
@@ -52,7 +38,6 @@ Treasure.prototype.getCurrentGridPosition = function() {
 };
 
 Treasure.prototype.update = function () {
-    //this.stateMachine.update();
 };
 
 Treasure.prototype.draw = function () {

@@ -2,18 +2,35 @@ var App = function () {
 
     var self = {};
 
+    var preload = new createjs.LoadQueue();
+    var spritesToLoad = [];
+    _.each(SpriteData.loadAll(), function(s) {
+        spritesToLoad.push({id: s.name, src: s.data.file});
+    });
+    preload.loadManifest(spritesToLoad);
+
+    function handleFileComplete(event) {
+        if (event.item.type == createjs.LoadQueue.IMAGE) {
+            Global.images = Global.images || [];
+            Global.images[event.item.id] = event.result;
+        }
+    }
+
+    function handleComplete(event) {
+        self.iniciar();
+        CI = new CommandInterface();
+    }
+
 
     self.iniciar = function (e) {
         
         self.stage = new Stage();
-
-        var sc = Global.scene_controle = new Scene_controle();
         Global.input = new Input();
 
+        var sc = Global.scene_controle = new Scene_controle();
         var sceneMain = new Scene_main();
 
         sc.adicionarScene(sceneMain);
-
         sc.alterarScene(sceneMain.id, sceneMain.iniciar());
         
         self.draw();
@@ -26,6 +43,9 @@ var App = function () {
 
         self.stage.update();
     };
+
+    preload.on("complete", handleComplete, this);
+    preload.on("fileload", handleFileComplete);
     
     return self;
 };

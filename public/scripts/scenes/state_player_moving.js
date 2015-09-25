@@ -22,9 +22,10 @@ var StatePlayerMoving = function () {
 		} else {
 			owner.alterarEstado(Player.states.IDLE, {callback: this.callback});
 		}
+    };
 
-		owner.spriteSheet.draw(owner);
-
+    this.draw = function (owner, params) {
+    	owner.spriteSheet.draw(owner);
     };
 
     this.sair = function (owner, params) {

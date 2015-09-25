@@ -3,6 +3,7 @@ var StatePlayerIdle = function () {
 
     this.iniciar = function (owner, params) {
     	console.log('Entrou no estado IDLE.');
+        
     	owner.spriteSheet.setSequence('idle');
     	if(params && params.callback)
     		params.callback();

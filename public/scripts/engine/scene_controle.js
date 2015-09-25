@@ -1,7 +1,4 @@
-﻿/// <reference path="sceneHTML.js" />
-/// <reference path="lib/underscore.js" />
-/// <reference path="scene.js" />
-
+﻿
 var Scene_controle = function () {
 
     this.scenes = [];

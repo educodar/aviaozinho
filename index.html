@@ -44,30 +44,12 @@
         $(document).ready(function () {
 
             var app = new App();
-            var preload = new createjs.LoadQueue();
-            var spritesToLoad = [];
-            _.each(SpriteData.loadAll(), function(s) {
-                spritesToLoad.push({id: s.name, src: s.data.file});
-            });
-            preload.loadManifest(spritesToLoad);
 
             Global.canvas = $("#canvas");
             Global.ctx = Global.canvas[0].getContext("2d");
             Global.width = canvas.width;
             Global.height = canvas.height;
             Global.mouse = utils.captureMouse(Global.canvas[0]);
-
-            function handleFileComplete(event) {
-                if (event.item.type == createjs.LoadQueue.IMAGE) {
-                    Global.images = Global.images || [];
-                    Global.images[event.item.id] = event.result;
-                }
-            }
-
-            function handleComplete(event) {
-                app.iniciar();
-                CI = new CommandInterface();
-            }
             
             $( "#btnRun" ).click(function() {
                 var lines = $('#txtCommand').val().split('\n');
@@ -80,8 +62,6 @@
                 Global.scene_controle.reiniciarScene();
             });
 
-            preload.on("complete", handleComplete, this);
-            preload.on("fileload", handleFileComplete);
         });
 
     </script>
@@ -92,7 +72,7 @@
         <button id="btnRestart" type="button">Reiniciar</button>
     </div>
     <div id="commandArea">
-        <textarea id='txtCommand' rows="30" cols="50"></textarea>
+        <textarea id='txtCommand' placeholder="Escreva seu código aqui..." rows="30" cols="50"></textarea>
         <button id="btnRun" type="button">Executar</button>
     </div>
 </body>

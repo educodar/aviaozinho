@@ -17,11 +17,6 @@ var Grid = function () {
         var treasure = new Treasure(self, {x:i+2, y:i+2});
         self.treasures.push(treasure);
     }
-
-    //this.alterarEstado(Adicao.estados.TERMO1, dados);
-
-    //this.stateManager = new StateMachine(this);
-
 };
 
 Grid.prototype.onRestart = function() {
@@ -45,7 +40,6 @@ Grid.prototype.addSearchPosition = function(posX, posY) {
 };
 
 Grid.prototype.update = function () {
-    //this.stateMachine.update();
 };
 
 Grid.prototype.draw = function () {
@@ -81,8 +75,5 @@ Grid.prototype.draw = function () {
         Global.ctx.stroke();
         Global.ctx.restore();
     }
-
-
-    //this.stateMachine.draw();
 
 };

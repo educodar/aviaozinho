@@ -9,20 +9,12 @@ var StateMachine = function (p) {
     this.setEstadoAnterior = function (e) { this.estadoAnterior = e; };
 
     this.update = function () {
-        /// <summary>
-        /// Chama o update do estado atual e do estado global
-        /// </summary>
         if (this.estadoGlobal) this.estadoGlobal.update(this.parent);
-
         if (this.estadoAtual) this.estadoAtual.update(this.parent);
     };
 
     this.draw = function () {
-        /// <summary>
-        /// Chama o draw do estado atual e do estado global
-        /// </summary>
         if (this.estadoGlobal) this.estadoGlobal.draw(this.parent);
-
         if (this.estadoAtual) this.estadoAtual.draw(this.parent);
     };
 

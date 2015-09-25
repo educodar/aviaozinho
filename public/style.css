@@ -10,3 +10,10 @@
 #gameArea #btnRestart {
 	float: left;
 }
+
+textarea {
+	background-color: black;
+	color: white;
+	font-family: "Courier New", Times, serif;  
+   	font-size: 14px;
+}

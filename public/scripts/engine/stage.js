@@ -21,7 +21,6 @@ var Stage = function () {
 
             scene.elementos = _.sortBy(scene.elementos, function (e) { return e.zIndex });
 
-            //Atualiza e desenha todos os objetos da scene na tela
             _.invoke(scene.elementos, "update");
             _.invoke(scene.elementos, "draw");
         }

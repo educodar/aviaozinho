@@ -9,10 +9,7 @@ var Scene = function (id) {
         if (!e.update) e.update = function () { };
         if (!e.draw) e.draw = function () { };
         if (!e.zIndex) e.zIndex = 0;
-
-        //Se não informar o tipo, ele é do tipo "obj".
-        if (!tipo && !e.tipo)
-            e.tipo = "obj";
+        if (!tipo && !e.tipo)e.tipo = "obj";
 
         this.elementos.push(e);
     };
