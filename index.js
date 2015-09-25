@@ -3,6 +3,7 @@ var app = express();
 
 require('./router/main')(app);
 
+app.use(express.static('public'));
 app.set('port', (process.env.PORT || 5000));
 app.set('views',__dirname + '/');
 app.set('view engine', 'ejs');
