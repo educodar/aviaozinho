@@ -4,8 +4,6 @@ var Evento = function () {
     //Enumeração que armazena o nome dos eventos associados ao objeto que instanciou o objeto Evento;
     this.eventos = {};
 
-    // Binds a callback on a target object to an 
-    // event on this object
     this.bind = function (event, target, callback) {
         // Handle the case where there is no target provided
         if (!callback) {
@@ -31,8 +29,6 @@ var Evento = function () {
         this.eventos[event.toUpperCase()] = event;
     };
 
-    // Triggers an event on an object, 
-    // triggering all listeners on the object
     this.trigger = function (event, data) {
         if (!data) data = event;
         if (this.listeners && this.listeners[event]) {
@@ -66,8 +62,6 @@ var Evento = function () {
             delete this.eventos[event.toUpperCase()];
     };
 
-    // Removes any bound methods from 
-    // this object
     this.debind = function () {
         if (this.binds) {
             for (var i = 0, len = this.binds.length; i < len; i++) {

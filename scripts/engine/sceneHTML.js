@@ -1,5 +1,4 @@
-﻿/// <reference path="lib/jquery-2.0.2.js" />
-
+﻿
 var SceneHTML = function () {
 
     this.exibir = function () {

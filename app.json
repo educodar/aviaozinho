@@ -1,0 +1,8 @@
+{
+  "name": "Educod@r",
+  "description": "",
+  "repository": "https://github.com/adrdomeniconi/educodar.git",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}
