@@ -7,13 +7,13 @@ var Treasure = function (grid, position) {
     this.y;
     this.gridPosX;
     this.gridPosY;
-    this.founded = false;
+    this.found = false;
 
     this.setPosition(position.x, position.y);
 };
 
 Treasure.prototype.onRestart = function() {
-    this.founded = false;
+    this.found = false;
 };
 
 Treasure.prototype.setPosition = function(gridPosX, gridPosY) {
@@ -24,9 +24,9 @@ Treasure.prototype.setPosition = function(gridPosX, gridPosY) {
 	this.gridPosY = gridPosY;
 };
 
-Treasure.prototype.found = function() {
-	if(!this.founded)
-		this.founded = true;
+Treasure.prototype.find = function() {
+	if(!this.found)
+		this.found = true;
 };
 
 Treasure.prototype.getCurrentPosition = function() {
@@ -50,7 +50,7 @@ Treasure.prototype.draw = function () {
 		crossX = position.y - length*.5,
 		crossY = position.y - length*.5;
 
-	if(this.founded) {
+	if(this.found) {
 	    Global.ctx.save();
 	    Global.ctx.translate(x, y);
 	    Global.ctx.beginPath();

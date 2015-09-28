@@ -1,5 +1,5 @@
 
-var CommandInterface = function() {
+var CommandInterface = function(callbackEndExecution) {
 
 	var self = this;
 
@@ -7,6 +7,7 @@ var CommandInterface = function() {
 	self.player = self.scene.player;
 	self.executionStack = [];
 	self.readyToExecute = true;
+	self.callbackEndExecution = callbackEndExecution;
 
 	this.movePlayerForward = function(steps) {
 
@@ -38,6 +39,13 @@ var CommandInterface = function() {
 		});
 	};
 
+	this.endExecution = function(commands) {
+		if(this.executionStack.length == 0) {
+			this.scene.endExecution();
+			this.callbackEndExecution();
+		}
+	};
+
 	this.executeNext = function() {
 
 		this.readyToExecute = false;
@@ -58,14 +66,21 @@ var CommandInterface = function() {
 			}
 		} else {
 			this.readyToExecute = true;
+            this.endExecution();
 		}
 	};
 
-	this.execute = function(command) {
+	this.executeCommand = function(command) {
 		this.executionStack.push(command);
 
 		if(this.executionStack.length == 1 && this.readyToExecute == true)
 			this.executeNext();
+	};
+
+	this.execute = function(commands) {
+        for(var i = 0 ; i < commands.length ; i++) {
+            this.executeCommand(commands[i].trim());
+        }
 	};
 
 };

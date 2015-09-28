@@ -43,7 +43,12 @@
 
         $(document).ready(function () {
 
-            var app = new App();
+            function releaseCodeEditor() {
+                $("#txtCommand").prop("disabled", false);
+                $("#btnRun").prop("disabled", false);
+            };
+
+            var app = new App(releaseCodeEditor);
 
             Global.canvas = $("#canvas");
             Global.ctx = Global.canvas[0].getContext("2d");
@@ -52,9 +57,11 @@
             Global.mouse = utils.captureMouse(Global.canvas[0]);
             
             $( "#btnRun" ).click(function() {
-                var lines = $('#txtCommand').val().split('\n');
-                for(var i = 0 ; i < lines.length ; i++) {
-                    CI.execute(lines[i]);
+                var commands = $('#txtCommand').val().split('\n');
+                if(commands.length > 0) {
+                    $("#btnRun").prop("disabled", true);
+                    $("#txtCommand").prop("disabled", true);
+                    CI.execute(commands);
                 }
             });
 

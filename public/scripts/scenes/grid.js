@@ -39,6 +39,18 @@ Grid.prototype.addSearchPosition = function(posX, posY) {
     this.searchedPositions.push({x: position.x, y: position.y });
 };
 
+Grid.prototype.allTreasuresFound = function() {
+    var self = this;
+    var allTreasuresFound = true;
+    for(var i = 0 ; i < self.treasureQtd ; i++) {
+        if(self.treasures[i].found == false) {
+            allTreasuresFound = false;
+            break;
+        }
+    } 
+    return allTreasuresFound;
+};
+
 Grid.prototype.update = function () {
 };
 

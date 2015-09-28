@@ -15,6 +15,14 @@ var Scene_main = function () {
         self.addElemento(this.player);
         self.addElemento(this);
     };
+
+    self.endExecution = function() {
+        if(self.grid.allTreasuresFound()) {
+            alert('Parabéns! Você encontrou todos os tesouros.')
+        } else {
+            alert('Ainda há tesouros há serem encontrados. Tente denovo.')
+        }
+    };
 };
 Scene_main.prototype = new Scene();
 

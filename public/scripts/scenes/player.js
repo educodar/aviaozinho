@@ -149,7 +149,7 @@ Player.prototype.checkTreasure = function(callback) {
 
         if (position) {
             if(position.treasure) {
-                position.treasure.found();
+                position.treasure.find();
                 founded = true;
             } else {
                 self.grid.addSearchPosition(nextPosition.posX, nextPosition.posY);

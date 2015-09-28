@@ -1,6 +1,7 @@
-var App = function () {
+var App = function (callbackEndExecution) {
 
     var self = {};
+    self.callbackEndExecution = callbackEndExecution;
 
     var preload = new createjs.LoadQueue();
     var spritesToLoad = [];
@@ -18,9 +19,8 @@ var App = function () {
 
     function handleComplete(event) {
         self.iniciar();
-        CI = new CommandInterface();
+        CI = new CommandInterface(callbackEndExecution);
     }
-
 
     self.iniciar = function (e) {
         
@@ -36,7 +36,6 @@ var App = function () {
         self.draw();
     };
 
-    //Loop principal do aplicativo
     self.draw = function () {
         window.requestAnimationFrame(self.draw, canvas);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
