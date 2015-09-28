@@ -51,25 +51,25 @@ Treasure.prototype.draw = function () {
 		crossY = position.y - length*.5;
 
 	if(this.found) {
-	    Global.ctx.save();
-	    Global.ctx.translate(x, y);
-	    Global.ctx.beginPath();
-	    Global.ctx.arc(0,0,size,0,2*Math.PI);
-	    Global.ctx.closePath();
-		Global.ctx.fillStyle = "green"; 
-	    Global.ctx.fill();
-	    Global.ctx.restore();
+	    App.display.ctx.save();
+	    App.display.ctx.translate(x, y);
+	    App.display.ctx.beginPath();
+	    App.display.ctx.arc(0,0,size,0,2*Math.PI);
+	    App.display.ctx.closePath();
+		App.display.ctx.fillStyle = "green"; 
+	    App.display.ctx.fill();
+	    App.display.ctx.restore();
 	} else {
-	    Global.ctx.save();
-	    Global.ctx.beginPath();
-	    Global.ctx.strokeStyle="#FF0000";
-	    Global.ctx.moveTo(crossX, crossY);
-	    Global.ctx.lineTo(crossX+length, crossY+length);
-	    Global.ctx.moveTo(crossX, crossY+length);
-	    Global.ctx.lineTo(crossX+length, crossY);
-	    Global.ctx.lineWidth = 8;
-	    Global.ctx.stroke();
-	    Global.ctx.restore();
+	    App.display.ctx.save();
+	    App.display.ctx.beginPath();
+	    App.display.ctx.strokeStyle="#FF0000";
+	    App.display.ctx.moveTo(crossX, crossY);
+	    App.display.ctx.lineTo(crossX+length, crossY+length);
+	    App.display.ctx.moveTo(crossX, crossY+length);
+	    App.display.ctx.lineTo(crossX+length, crossY);
+	    App.display.ctx.lineWidth = 8;
+	    App.display.ctx.stroke();
+	    App.display.ctx.restore();
 	}
 
 

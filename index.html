@@ -38,9 +38,6 @@
 
     <script>
 
-        var Global = {};
-        var CI = {};
-
         $(document).ready(function () {
 
             function releaseCodeEditor() {
@@ -48,25 +45,26 @@
                 $("#btnRun").prop("disabled", false);
             };
 
-            var app = new App(releaseCodeEditor);
-
-            Global.canvas = $("#canvas");
-            Global.ctx = Global.canvas[0].getContext("2d");
-            Global.width = canvas.width;
-            Global.height = canvas.height;
-            Global.mouse = utils.captureMouse(Global.canvas[0]);
+            App.loadImages();
+            App.callbackEndExecution = releaseCodeEditor;
+            App.display = {};
+            App.display.canvas = $("#canvas");
+            App.display.ctx = App.display.canvas[0].getContext("2d");
+            App.display.width = canvas.width;
+            App.display.height = canvas.height;
+            App.mouse = utils.captureMouse(App.display.canvas[0]);
             
             $( "#btnRun" ).click(function() {
                 var commands = $('#txtCommand').val().split('\n');
                 if(commands.length > 0) {
                     $("#btnRun").prop("disabled", true);
                     $("#txtCommand").prop("disabled", true);
-                    CI.execute(commands);
+                    App.CommandInterface.execute(commands);
                 }
             });
 
             $( "#btnRestart" ).click(function() {
-                Global.scene_controle.reiniciarScene();
+                App.scene_controle.reiniciarScene();
             });
 
         });

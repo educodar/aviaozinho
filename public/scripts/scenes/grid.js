@@ -56,14 +56,14 @@ Grid.prototype.update = function () {
 
 Grid.prototype.draw = function () {
             
-    Global.ctx.save();
+    App.display.ctx.save();
 
     for(var i = 0 ; i < this.xAxisSize ; i++ ) {
         for(var j = 0 ; j < this.yAxisSize ; j++ ) {
-            Global.ctx.beginPath();
-            Global.ctx.rect( this.marginLeft + (i*this.blockSize), this.marginTop + (j*this.blockSize), this.blockSize, this.blockSize);
-            Global.ctx.closePath();
-            Global.ctx.stroke();
+            App.display.ctx.beginPath();
+            App.display.ctx.rect( this.marginLeft + (i*this.blockSize), this.marginTop + (j*this.blockSize), this.blockSize, this.blockSize);
+            App.display.ctx.closePath();
+            App.display.ctx.stroke();
         }        
     }
 
@@ -77,15 +77,15 @@ Grid.prototype.draw = function () {
             x = this.searchedPositions[i].x - length*.5,
             y = this.searchedPositions[i].y - length*.5;
 
-        Global.ctx.save();
-        Global.ctx.beginPath();
-        Global.ctx.moveTo(x,y);
-        Global.ctx.lineTo(x+length,y+length);
-        Global.ctx.moveTo(x,y+length);
-        Global.ctx.lineTo(x+length,y);
-        Global.ctx.lineWidth = 5;
-        Global.ctx.stroke();
-        Global.ctx.restore();
+        App.display.ctx.save();
+        App.display.ctx.beginPath();
+        App.display.ctx.moveTo(x,y);
+        App.display.ctx.lineTo(x+length,y+length);
+        App.display.ctx.moveTo(x,y+length);
+        App.display.ctx.lineTo(x+length,y);
+        App.display.ctx.lineWidth = 5;
+        App.display.ctx.stroke();
+        App.display.ctx.restore();
     }
 
 };

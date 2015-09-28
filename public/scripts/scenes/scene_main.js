@@ -20,7 +20,7 @@ var Scene_main = function () {
         if(self.grid.allTreasuresFound()) {
             alert('Parabéns! Você encontrou todos os tesouros.')
         } else {
-            alert('Ainda há tesouros há serem encontrados. Tente denovo.')
+            alert('Ainda há tesouros a serem encontrados. Tente denovo.')
         }
     };
 };

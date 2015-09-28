@@ -20,10 +20,10 @@ var Input = function () {
 
         target.push({ evento: evento, callback: callback, bind: bind });
 
-        if(!Global.touch)
-            Global.canvas.bind(evento, callback);
+        if(!App.touch)
+            App.display.canvas.bind(evento, callback);
         else
-            Global.canvas.hammer().bind(evento, callback);
+            App.display.canvas.hammer().bind(evento, callback);
     };
 
     this.remove = function (evento, callback, contexto) {
@@ -37,10 +37,10 @@ var Input = function () {
         if (idx == -1) console.log("Não encontrou o objeto. input.removeInput");
         target.splice(idx, 1);
 
-        if (!Global.touch)
-            Global.canvas.unbind(evento, callback);
+        if (!App.touch)
+            App.display.canvas.unbind(evento, callback);
         else
-            Global.canvas.hammer().unbind(evento, callback);
+            App.display.canvas.hammer().unbind(evento, callback);
     };
 
     this.pedirExclusividade = function (contexto) {
@@ -48,19 +48,19 @@ var Input = function () {
             if (contextos[i] != contexto)
                 for (var j = 0, ctx = contextos[i]; j < ctx.length ; j++) {
                     var evt = this.inputScenes[ctx];
-                    Global.canvas.unbind(evt.evento, evt.callback);
+                    App.display.canvas.unbind(evt.evento, evt.callback);
                 }
         }
     };
 
     this.bindContexto = function (contexto) {
         for(var i = 0, ctx = this.inputScenes[contexto] ; ctx && i < ctx.length ; i++)
-            Global.canvas.bind(ctx[i].evento, ctx[i].callback);
+            App.display.canvas.bind(ctx[i].evento, ctx[i].callback);
     };
 
     this.unbindContexto = function (contexto) {
         for (var i = 0, ctx = this.inputScenes[contexto]; ctx && i < ctx.length ; i++)
-            Global.canvas.unbind(ctx[i].evento, ctx[i].callback);
+            App.display.canvas.unbind(ctx[i].evento, ctx[i].callback);
     };
 
     this.existeContexto = function (contexto) {

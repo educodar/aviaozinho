@@ -3,7 +3,7 @@ var CommandInterface = function(callbackEndExecution) {
 
 	var self = this;
 
-	self.scene = Global.scene_controle.getCurrentScene();
+	self.scene = App.scene_controle.getCurrentScene();
 	self.player = self.scene.player;
 	self.executionStack = [];
 	self.readyToExecute = true;

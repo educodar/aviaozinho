@@ -172,20 +172,20 @@ Player.prototype.draw = function () {
 	// var size = 28;
 	// var position = this.getCurrentPosition();
 
- //    Global.ctx.save();
- //    Global.ctx.translate(position.x, position.y);
- //    Global.ctx.rotate((this.direction-90)*Math.PI/180);
- //    Global.ctx.translate(-position.x, -position.y);
- //    Global.ctx.translate(position.x - size*.5, position.y - size*.5);
+ //    App.display.ctx.save();
+ //    App.display.ctx.translate(position.x, position.y);
+ //    App.display.ctx.rotate((this.direction-90)*Math.PI/180);
+ //    App.display.ctx.translate(-position.x, -position.y);
+ //    App.display.ctx.translate(position.x - size*.5, position.y - size*.5);
 
  //    var path=new Path2D();
  //    path.moveTo(0,0);
  //    path.lineTo(0,size);
  //    path.lineTo(size*1.2,size*.5);
 
- //    Global.ctx.fillStyle = "blue";
- //    Global.ctx.fill(path);
- //    Global.ctx.restore();
+ //    App.display.ctx.fillStyle = "blue";
+ //    App.display.ctx.fill(path);
+ //    App.display.ctx.restore();
 
     this.stateMachine.draw();
 

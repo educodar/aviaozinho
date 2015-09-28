@@ -206,8 +206,8 @@ window.utils.obterTouch = function (e) {
         touchY;
 
     if (e.gesture.srcEvent.touches) {
-        touchX = e.gesture.srcEvent.touches[0].clientX - Global.margemEsq;
-        touchY = e.gesture.srcEvent.touches[0].clientY - Global.margemTop;
+        touchX = e.gesture.srcEvent.touches[0].clientX - App.margemEsq;
+        touchY = e.gesture.srcEvent.touches[0].clientY - App.margemTop;
     }
     else {
         touchX = e.gesture.srcEvent.offsetX;

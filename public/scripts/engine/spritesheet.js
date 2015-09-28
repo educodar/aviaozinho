@@ -18,13 +18,13 @@ var Spritesheet = function(spriteData) {
 		var height = this.frames[0].height * this.sizeAdjustFactor;
 		var position = displayObject.getCurrentPosition();
 
-		Global.ctx.save();
-	    Global.ctx.translate(position.x, position.y);
-	    Global.ctx.rotate((displayObject.direction-90)*Math.PI/180);
-	    Global.ctx.translate(-position.x, -position.y);
-	    Global.ctx.translate(position.x - width*.5, position.y - height*.5);
-		Global.ctx.drawImage(
-			Global.images[this.name],
+		App.display.ctx.save();
+	    App.display.ctx.translate(position.x, position.y);
+	    App.display.ctx.rotate((displayObject.direction-90)*Math.PI/180);
+	    App.display.ctx.translate(-position.x, -position.y);
+	    App.display.ctx.translate(position.x - width*.5, position.y - height*.5);
+		App.display.ctx.drawImage(
+			App.images[this.name],
 			0, //sx
 			0, //sy
 			this.frames[0].width, //swidth
@@ -34,7 +34,7 @@ var Spritesheet = function(spriteData) {
 			width, //width
 			height //height
 		);
-		Global.ctx.restore();
+		App.display.ctx.restore();
 	};
 
 };

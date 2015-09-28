@@ -1,33 +1,39 @@
-var App = function (callbackEndExecution) {
+var App = new function () {
 
     var self = {};
-    self.callbackEndExecution = callbackEndExecution;
-
-    var preload = new createjs.LoadQueue();
-    var spritesToLoad = [];
-    _.each(SpriteData.loadAll(), function(s) {
-        spritesToLoad.push({id: s.name, src: s.data.file});
-    });
-    preload.loadManifest(spritesToLoad);
+    self.callbackEndExecution = null;
 
     function handleFileComplete(event) {
         if (event.item.type == createjs.LoadQueue.IMAGE) {
-            Global.images = Global.images || [];
-            Global.images[event.item.id] = event.result;
+            App.images = App.images || [];
+            App.images[event.item.id] = event.result;
         }
     }
 
     function handleComplete(event) {
         self.iniciar();
-        CI = new CommandInterface(callbackEndExecution);
+        App.CommandInterface = new CommandInterface(self.callbackEndExecution);
+    }
+
+    self.loadImages = function() {
+        var preload = new createjs.LoadQueue();
+        var spritesToLoad = [];
+        _.each(SpriteData.loadAll(), function(s) {
+            spritesToLoad.push({id: s.name, src: s.data.file});
+        });
+        preload.loadManifest(spritesToLoad);
+
+
+        preload.on("complete", handleComplete, this);
+        preload.on("fileload", handleFileComplete);
     }
 
     self.iniciar = function (e) {
         
         self.stage = new Stage();
-        Global.input = new Input();
+        App.input = new Input();
 
-        var sc = Global.scene_controle = new Scene_controle();
+        var sc = App.scene_controle = new Scene_controle();
         var sceneMain = new Scene_main();
 
         sc.adicionarScene(sceneMain);
@@ -42,9 +48,6 @@ var App = function (callbackEndExecution) {
 
         self.stage.update();
     };
-
-    preload.on("complete", handleComplete, this);
-    preload.on("fileload", handleFileComplete);
     
     return self;
 };

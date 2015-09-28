@@ -6,7 +6,7 @@ var Stage = function () {
 
     this.update = function () {
 
-        var scene = Global.scene;
+        var scene = App.scene;
         
         //Verifica se a cena atual é uma tela do canvas ou um elemento HTML. Se for HTML não precisa fazer nada.
         //Ainda não tenho certeza de como isso vai funcionar quando a cena for misturada. Mas ainda não precisei implementar
