@@ -47,7 +47,7 @@ Treasure.prototype.draw = function () {
 		length = 25,
 		x = position.x,
 		y = position.y,
-		crossX = position.y - length*.5,
+		crossX = position.x - length*.5,
 		crossY = position.y - length*.5;
 
 	if(this.found) {

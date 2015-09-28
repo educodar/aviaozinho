@@ -9,14 +9,14 @@ var Grid = function () {
     self.blockSize = 50,
     self.marginLeft = 10,
     self.marginTop = 10;
-    self.treasureQtd = 4;
     self.treasures = [];
     self.searchedPositions = [];
 
-    for(var i = 0 ; i < self.treasureQtd ; i++) {
-        var treasure = new Treasure(self, {x:i+2, y:i+2});
-        self.treasures.push(treasure);
-    }
+    self.treasures.push(new Treasure(self, {x:2, y:2}));
+    self.treasures.push(new Treasure(self, {x:3, y:6}));
+    self.treasures.push(new Treasure(self, {x:4, y:3}));
+    self.treasures.push(new Treasure(self, {x:5, y:3}));
+    self.treasures.push(new Treasure(self, {x:6, y:5}));
 };
 
 Grid.prototype.onRestart = function() {
@@ -42,7 +42,7 @@ Grid.prototype.addSearchPosition = function(posX, posY) {
 Grid.prototype.allTreasuresFound = function() {
     var self = this;
     var allTreasuresFound = true;
-    for(var i = 0 ; i < self.treasureQtd ; i++) {
+    for(var i = 0 ; i < self.treasures.length ; i++) {
         if(self.treasures[i].found == false) {
             allTreasuresFound = false;
             break;
