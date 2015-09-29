@@ -3,8 +3,8 @@ Projeto de game para ser usado no ensino de programação para crianças e adole
 
 ## Comandos:
 
-Girar() -- Aceita 0, 90, 180, 270 e 360 como parâmetro
+girar() -- Aceita 0, 90, 180, 270 e 360 como parâmetro
 
-Andar(casas)
+andar(casas)
 
-ChecarTesouro()
+checarTesouro()
