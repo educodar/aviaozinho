@@ -94,8 +94,13 @@ Player.prototype.moveForward = function(steps, callback) {
     }
 };
 
-Player.prototype.rotate = function(angle, callback) {
+Player.prototype.rotate = function(direction, callback) {
     var self = this;
+    var angle;
+
+    if(direction == 'dir') angle = 90
+    else if(direction == 'esq') angle = 270
+
     setTimeout(function() {   
         self.direction = (self.direction + angle)%360;  
         setTimeout(function() { 

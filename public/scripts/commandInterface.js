@@ -20,15 +20,15 @@ var CommandInterface = function(callbackEndExecution) {
 		});
 	};
 
-	this.rotatePlayer = function(angle) {
-		if(angle == 90 || angle == 180 || angle == 270 || angle == 360 || angle == 0)
-			self.player.rotate(angle, function() { 
+	this.rotatePlayer = function(direction) {
+		if(direction == 'dir' || direction == 'esq')
+			self.player.rotate(direction, function() { 
 			console.log('Girou.');
 			self.readyToExecute = true; 
 			self.executeNext(); 
 		});
 		else
-			alert('Ângulo inválido. Os ângulos válidos são: 0, 90, 180, 270, 360');
+			alert('Parâmetro inválido. Para girar escreva \'dir\' ou \'esq\' ');
 	};
 
 	this.checkTreasure = function() {
@@ -51,7 +51,7 @@ var CommandInterface = function(callbackEndExecution) {
 		this.readyToExecute = false;
 
 		var andar = function(steps) { self.movePlayerForward(steps); };
-		var girar = function(angle) { self.rotatePlayer(angle); };
+		var girar = function(direction) { self.rotatePlayer(direction); };
 		var checarTesouro = function() {self.checkTreasure(); };
 
 		var nextCommand = this.executionStack.shift();
@@ -61,8 +61,10 @@ var CommandInterface = function(callbackEndExecution) {
 			    eval(nextCommand);
 			}
 			catch(err) {
-				if(err)
+				if(err) {
 			    	alert('Erro no eval: ' + nextCommand);
+					this.callbackEndExecution();
+				}
 			}
 		} else {
 			this.readyToExecute = true;

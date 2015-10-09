@@ -21,7 +21,7 @@ var Grid = function () {
 
 Grid.prototype.onRestart = function() {
     this.searchedPositions = [];
-    for(var i = 0 ; i < this.treasureQtd ; i++) {
+    for(var i = 0 ; i < this.treasures.length ; i++) {
         this.treasures[i].onRestart();
     }
 };
