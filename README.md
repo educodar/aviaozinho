@@ -3,7 +3,7 @@ Projeto de game para ser usado no ensino de programação para crianças e adole
 
 ## Comandos:
 
-girar() -- Aceita 0, 90, 180, 270 e 360 como parâmetro
+girar() -- Aceita "dir" e "esq" como parâmetro
 
 andar(casas)
 
