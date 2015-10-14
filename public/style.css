@@ -1,16 +1,4 @@
 
-#commandArea {
-	float: left;
-}
-
-#gameArea {
-	float: left;
-}
-
-#gameArea #btnRestart {
-	float: left;
-}
-
 textarea {
 	background-color: black;
 	color: white;

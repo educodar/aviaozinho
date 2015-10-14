@@ -1,85 +1,119 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title></title>
-    <link href="style.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <title>ThoughtWorks - Educod@r</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="style.css" rel="stylesheet" />
 
-    <!--Library-->
-    <script src="scripts/lib/jquery-1.11.3.min.js"></script>
-    <script src="scripts/lib/underscore.js"></script>
-    <script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+  <!--Library-->
+  <script src="scripts/lib/jquery-1.11.3.min.js"></script>
+  <script src="scripts/lib/underscore.js"></script>
+  <script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
 
-    <!--Engine-->
-    <script src="scripts/engine/evento.js"></script>
-    <script src="scripts/engine/input.js"></script>
-    <script src="scripts/engine/scene.js"></script>
-    <script src="scripts/engine/scene_controle.js"></script>
-    <script src="scripts/engine/sceneHTML.js"></script>
-    <script src="scripts/engine/stage.js"></script>
-    <script src="scripts/engine/utils.js"></script>
-    <script src="scripts/engine/state.js"></script>
-    <script src="scripts/engine/stateMachine.js"></script>
-    <script src="scripts/engine/spriteData.js"></script>
-    <script src="scripts/engine/spritesheet.js"></script>
+  <!--Engine-->
+  <script src="scripts/engine/evento.js"></script>
+  <script src="scripts/engine/input.js"></script>
+  <script src="scripts/engine/scene.js"></script>
+  <script src="scripts/engine/scene_controle.js"></script>
+  <script src="scripts/engine/sceneHTML.js"></script>
+  <script src="scripts/engine/stage.js"></script>
+  <script src="scripts/engine/utils.js"></script>
+  <script src="scripts/engine/state.js"></script>
+  <script src="scripts/engine/stateMachine.js"></script>
+  <script src="scripts/engine/spriteData.js"></script>
+  <script src="scripts/engine/spritesheet.js"></script>
 
-    <!--Jogo-->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/commandInterface.js"></script>
+  <!--Jogo-->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/commandInterface.js"></script>
 
-    <!--Telas-->
-    <script src="scripts/scenes/scene_main.js"></script>   
-    <script src="scripts/scenes/grid.js"></script>   
-    <script src="scripts/scenes/player_spriteData.js"></script>  
-    <script src="scripts/scenes/state_player_idle.js"></script>  
-    <script src="scripts/scenes/state_player_moving.js"></script>   
-    <script src="scripts/scenes/player.js"></script>    
-    <script src="scripts/scenes/treasure.js"></script>   
+  <!--Telas-->
+  <script src="scripts/scenes/scene_main.js"></script>   
+  <script src="scripts/scenes/grid.js"></script>   
+  <script src="scripts/scenes/player_spriteData.js"></script>  
+  <script src="scripts/scenes/state_player_idle.js"></script>  
+  <script src="scripts/scenes/state_player_moving.js"></script>   
+  <script src="scripts/scenes/player.js"></script>    
+  <script src="scripts/scenes/treasure.js"></script>   
 
-    <script>
+  <script>
 
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            function releaseCodeEditor() {
-                $("#txtCommand").prop("disabled", false);
-                $("#btnRun").prop("disabled", false);
-                App.scene_controle.reiniciarScene();
-            };
+      function releaseCodeEditor() {
+        $("#txtCommand").prop("disabled", false);
+        $("#btnRun").prop("disabled", false);
+        App.scene_controle.reiniciarScene();
+      };
 
-            App.loadImages();
-            App.callbackEndExecution = releaseCodeEditor;
-            App.display = {};
-            App.display.canvas = $("#canvas");
-            App.display.ctx = App.display.canvas[0].getContext("2d");
-            App.display.width = canvas.width;
-            App.display.height = canvas.height;
-            App.mouse = utils.captureMouse(App.display.canvas[0]);
-            
-            $( "#btnRun" ).click(function() {
-                var commands = $('#txtCommand').val().split('\n');
-                if(commands.length > 0) {
-                    $("#btnRun").prop("disabled", true);
-                    $("#txtCommand").prop("disabled", true);
-                    App.CommandInterface.execute(commands);
-                }
-            });
+      App.loadImages();
+      App.callbackEndExecution = releaseCodeEditor;
+      App.display = {};
+      App.display.canvas = $("#canvas");
+      App.display.ctx = App.display.canvas[0].getContext("2d");
+      App.display.width = canvas.width;
+      App.display.height = canvas.height;
+      App.mouse = utils.captureMouse(App.display.canvas[0]);
 
-            $( "#btnRestart" ).click(function() {
-                App.scene_controle.reiniciarScene();
-            });
+      $( "#btnRun" ).click(function() {
+        var commands = $('#txtCommand').val().split('\n');
+        if(commands.length > 0) {
+          $("#btnRun").prop("disabled", true);
+          $("#txtCommand").prop("disabled", true);
+          App.CommandInterface.execute(commands);
+        }
+      });
 
-        });
+      $( "#btnRestart" ).click(function() {
+        App.scene_controle.reiniciarScene();
+      });
 
-    </script>
+    });
+
+  </script>
 </head>
 <body>
-    <div id="gameArea">
-        <canvas id="canvas" width="600" height="400"></canvas>
-        <button id="btnRestart" type="button">Reiniciar</button>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="images/logo.png">
+      </div>
+      <div class="col-md-6">Título</div>
     </div>
-    <div id="commandArea">
-        <textarea id='txtCommand' placeholder="Escreva seu código aqui..." rows="30" cols="50"></textarea>
-        <button id="btnRun" type="button">Executar</button>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="commandArea">
+          <textarea id='txtCommand' placeholder="Escreva seu código aqui..." rows="25" cols="60"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="gameArea">
+              <canvas id="canvas" width="600" height="400"></canvas>
+              <button id="btnRestart" type="button" class="btn btn-default">Reiniciar</button>
+              <button id="btnRun" type="button" class="btn btn-success">Executar</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="bg-info">
+              Comandos:</br>
+              </br>
+              andar(x): x é o número de casas.</br>
+              girar('dir'): gira à direita.</br>
+              girar('esq'): gira à direita.</br>
+              checarTesouro(): verifica se há um tesouro na casa a frente.</br>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
 </body>
 </html>
