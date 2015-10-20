@@ -28,8 +28,8 @@ Grid.prototype.onRestart = function() {
 
 Grid.prototype.getPosition = function(posX, posY) {
 
-    var x = this.marginLeft + ( (posX-1)*this.blockSize) + this.blockSize*.5;
-    var y = this.marginTop + ( (posY-1)*this.blockSize) + this.blockSize*.5;
+    var x = this.marginLeft + ( (posX-1)*this.blockSize) + this.blockSize/2;
+    var y = this.marginTop + ( (posY-1)*this.blockSize) + this.blockSize/2;
 
     return {x:x, y:y, treasure: _.find(this.treasures, function(t) { return t.gridPosX == posX && t.gridPosY == posY }) };
 };
@@ -58,14 +58,22 @@ Grid.prototype.draw = function () {
             
     App.display.ctx.save();
 
+    App.display.ctx.rect(this.marginLeft, this.marginTop, this.blockSize*this.xAxisSize, this.blockSize*this.yAxisSize);
+    App.display.ctx.fillStyle = "#3348E2";
+    App.display.ctx.fill();
+
     for(var i = 0 ; i < this.xAxisSize ; i++ ) {
         for(var j = 0 ; j < this.yAxisSize ; j++ ) {
             App.display.ctx.beginPath();
+            App.display.ctx.lineWidth = 0.5;
             App.display.ctx.rect( this.marginLeft + (i*this.blockSize), this.marginTop + (j*this.blockSize), this.blockSize, this.blockSize);
             App.display.ctx.closePath();
+            App.display.ctx.strokeStyle = "#FFFFFF"
             App.display.ctx.stroke();
         }        
     }
+
+    App.display.ctx.restore();
 
     for(var i = 0 ; i < this.treasures.length ; i ++) {
         this.treasures[i].update();

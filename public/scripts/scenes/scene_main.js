@@ -18,9 +18,9 @@ var Scene_main = function () {
 
     self.endExecution = function() {
         if(self.grid.allTreasuresFound()) {
-            alert('Parabéns! Você encontrou todos os tesouros.')
+            toastr.success('Parabéns! Você encontrou todos os tesouros.', 'Educod@r');
         } else {
-            alert('Ainda há tesouros a serem encontrados. Tente denovo.')
+            toastr.error('Ainda há tesouros a serem encontrados. Tente denovo.', 'Educod@r');
         }
     };
 };

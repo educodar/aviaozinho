@@ -9,6 +9,11 @@ var Treasure = function (grid, position) {
     this.gridPosY;
     this.found = false;
 
+    this.stateMachine = new StateMachine(this);
+
+    this.spriteSheet = new Spritesheet(SpriteData.load('cloud_sprite'));
+    this.spriteSheet.setSequence('idle');
+
     this.setPosition(position.x, position.y);
 };
 
@@ -41,36 +46,12 @@ Treasure.prototype.update = function () {
 };
 
 Treasure.prototype.draw = function () {
-	
-	var size = 15,
-		position = this.getCurrentPosition(),
-		length = 25,
-		x = position.x,
-		y = position.y,
-		crossX = position.x - length*.5,
-		crossY = position.y - length*.5;
-
 	if(this.found) {
-	    App.display.ctx.save();
-	    App.display.ctx.translate(x, y);
-	    App.display.ctx.beginPath();
-	    App.display.ctx.arc(0,0,size,0,2*Math.PI);
-	    App.display.ctx.closePath();
-		App.display.ctx.fillStyle = "green"; 
-	    App.display.ctx.fill();
-	    App.display.ctx.restore();
+		this.spriteSheet = new Spritesheet(SpriteData.load('baloon_sprite'));
 	} else {
-	    App.display.ctx.save();
-	    App.display.ctx.beginPath();
-	    App.display.ctx.strokeStyle="#FF0000";
-	    App.display.ctx.moveTo(crossX, crossY);
-	    App.display.ctx.lineTo(crossX+length, crossY+length);
-	    App.display.ctx.moveTo(crossX, crossY+length);
-	    App.display.ctx.lineTo(crossX+length, crossY);
-	    App.display.ctx.lineWidth = 8;
-	    App.display.ctx.stroke();
-	    App.display.ctx.restore();
+	    this.spriteSheet = new Spritesheet(SpriteData.load('cloud_sprite'));
 	}
+	this.spriteSheet.draw(this);
 
 
 };
