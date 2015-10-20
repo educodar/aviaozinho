@@ -68,7 +68,7 @@ Player.prototype.setPosition = function(gridPosX, gridPosY) {
     	this.gridPosX = gridPosX;
     	this.gridPosY = gridPosY;
     } else {
-        alert('Posição: ' + gridPosX + ', ' + gridPosY + ' inválida');
+        toastr.error('Posição: ' + gridPosX + ', ' + gridPosY + ' inválida');
     }
 };
 
@@ -90,7 +90,8 @@ Player.prototype.moveForward = function(steps, callback) {
         
         this.alterarEstado(Player.states.MOVING, {callback: callback});
     } else {
-        alert('Posição: ' + gridPosX + ', ' + gridPosY + ' inválida');
+        toastr.error('Não é possível mover '+steps+' espaços de onde o avião está');
+        callback();
     }
 };
 

@@ -3,7 +3,9 @@ Projeto de game para ser usado no ensino de programação para crianças e adole
 
 ## Comandos:
 
-girar() -- Aceita "dir" e "esq" como parâmetro
+girarParaDireita() - Gira o avião para a direita
+
+girarParaEsquerda() - Gira o avião para a esquerda
 
 andar(casas) -- Sem parâmetro anda uma casa
 

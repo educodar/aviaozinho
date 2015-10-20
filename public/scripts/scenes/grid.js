@@ -59,7 +59,7 @@ Grid.prototype.draw = function () {
     App.display.ctx.save();
 
     App.display.ctx.rect(this.marginLeft, this.marginTop, this.blockSize*this.xAxisSize, this.blockSize*this.yAxisSize);
-    App.display.ctx.fillStyle = "#3348E2";
+    App.display.ctx.fillStyle = "#259ADE";
     App.display.ctx.fill();
 
     for(var i = 0 ; i < this.xAxisSize ; i++ ) {

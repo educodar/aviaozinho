@@ -28,7 +28,7 @@ var CommandInterface = function(callbackEndExecution) {
 			self.executeNext(); 
 		});
 		else
-			alert('Parâmetro inválido. Para girar escreva \'dir\' ou \'esq\' ');
+			toastr.error('Parâmetro inválido. Para girar escreva \'dir\' ou \'esq\' ');
 	};
 
 	this.checkTreasure = function() {
@@ -51,7 +51,8 @@ var CommandInterface = function(callbackEndExecution) {
 		this.readyToExecute = false;
 
 		var andar = function(steps) { self.movePlayerForward(steps); };
-		var girar = function(direction) { self.rotatePlayer(direction); };
+		var girarParaDireita = function() { self.rotatePlayer('dir'); };
+		var girarParaEsquerda = function() { self.rotatePlayer('esq'); };
 		var checarTesouro = function() {self.checkTreasure(); };
 
 		var nextCommand = this.executionStack.shift();
@@ -62,7 +63,7 @@ var CommandInterface = function(callbackEndExecution) {
 			}
 			catch(err) {
 				if(err) {
-			    	alert('Erro no eval: ' + nextCommand);
+			    	toastr.error('Erro no comando: ' + nextCommand);
 					this.callbackEndExecution();
 				}
 			}
