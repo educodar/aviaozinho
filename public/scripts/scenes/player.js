@@ -107,11 +107,42 @@ Player.prototype.rotate = function(direction, callback) {
         setTimeout(function() { 
             callback();
         }, 500);
-    }, 500);  
-    
-    
-    //TODO: Tratar erro de "out of bounds"
+    }, 500); 
 };
+
+Player.prototype.turnAround = function(callback) {
+    var self = this;
+    self.rotate('dir');
+    setTimeout(function() {self.rotate('dir', callback)}, 500);
+
+}
+
+Player.prototype.moveForwardCheckingTreasure = function(steps, count, callback) {
+    var self = this;
+    var nextPosition = this.getNextPosition(steps - count);
+    if (count == steps) {
+        callback();
+    } else if(this.isValidPosition(nextPosition.posX, nextPosition.posY)) {
+        var forwardPos = this.getNextPosition(1)
+        var gridData = this.grid.getPosition( forwardPos.posX, forwardPos.posY);
+
+        this.gridPosX = forwardPos.posX;
+        this.gridPosY = forwardPos.posY;
+
+        this.targetX = gridData.x;
+        this.targetY = gridData.y;
+        
+        this.alterarEstado(Player.states.MOVING, {callback: function(){
+            self.checkTreasure(function() {
+                self.moveForwardCheckingTreasure(steps, count+1, callback);
+            });
+        }});
+
+    } else {
+        toastr.error('Não é possível mover '+steps+' espaços buscando por tesouros de onde o avião está');
+        callback();
+    }
+}
 
 Player.prototype.getCurrentPosition = function() {
 	return {x:this.x, y:this.y};

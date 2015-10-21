@@ -83,7 +83,6 @@
       <div class="col-md-6">
         <img src="images/Logo.png">
       </div>
-      <div class="col-md-6">Busca Tesouro</div>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -104,12 +103,27 @@
         <div class="row">
           <div class="col-md-12">
             <p class="bg-info">
-              Comandos:</br>
+              Comandos Básicos:</br>
               </br>
               andar(x): Anda X espaços no tabuleiro. Exemplo: andar(2), andar(5)</br>
               girarParaDireita(): Faz o avião girar para a direita.</br>
               girarParaEsquerda(): Faz o avião girar para a esquerda.</br>
               checarTesouro(): Verifica se há um tesouro na casa a frente.</br>
+              </br>
+              Funções (sequência de comandos): </br>
+              meiaVolta() {</br>
+              girarParaDireita(); </br>
+              girarParaDireita();</br>
+              }
+              </br>
+              percorrerChecandoTesouro(x) {</br>
+              andar(1)</br>
+              checarTesouro()</br>
+              ...</br> 
+              andar(1)</br>
+              checarTesouro()</br>
+              }</br>
+
             </p>
           </div>
         </div>

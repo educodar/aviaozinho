@@ -11,8 +11,6 @@ var CommandInterface = function(callbackEndExecution) {
 
 	this.movePlayerForward = function(steps) {
 
-		var self = this;
-
 		self.player.moveForward(steps, function() { 
 			console.log('Callback final da animação de andar.');
 			self.readyToExecute = true; 
@@ -39,6 +37,22 @@ var CommandInterface = function(callbackEndExecution) {
 		});
 	};
 
+	this.turnAround = function(){
+		self.player.turnAround(function() {
+			console.log('Callback final da animação de meia volta.');
+			self.readyToExecute = true; 
+			self.executeNext();
+		});
+	};
+
+	this.movePlayerCheckingTreasure = function(steps) {
+		self.player.moveForwardCheckingTreasure(steps, 0, function() { 
+			console.log('Callback final da animação de andar.');
+			self.readyToExecute = true; 
+			self.executeNext(); 
+		});
+	}
+
 	this.endExecution = function(commands) {
 		if(this.executionStack.length == 0) {
 			this.scene.endExecution();
@@ -54,6 +68,9 @@ var CommandInterface = function(callbackEndExecution) {
 		var girarParaDireita = function() { self.rotatePlayer('dir'); };
 		var girarParaEsquerda = function() { self.rotatePlayer('esq'); };
 		var checarTesouro = function() { self.checkTreasure(); };
+		var meiaVolta = function() { self.turnAround(); };
+
+		var percorrerChecandoTesouro = function(steps) { self.movePlayerCheckingTreasure(steps); };
 
 		var nextCommand = this.executionStack.shift();
 
