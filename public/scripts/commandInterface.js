@@ -53,6 +53,14 @@ var CommandInterface = function(callbackEndExecution) {
 		});
 	}
 
+	this.moveAndCheckTreasureInTheEnd = function(steps) {
+		self.player.moveForwardAndCheckTreasureInTheEnd(steps, function() { 
+			console.log('Callback final da animação de andar.');
+			self.readyToExecute = true; 
+			self.executeNext(); 
+		});
+	}
+
 	this.endExecution = function(commands) {
 		if(this.executionStack.length == 0) {
 			this.scene.endExecution();
@@ -69,7 +77,7 @@ var CommandInterface = function(callbackEndExecution) {
 		var girarParaEsquerda = function() { self.rotatePlayer('esq'); };
 		var checarTesouro = function() { self.checkTreasure(); };
 		var meiaVolta = function() { self.turnAround(); };
-
+		var andarEChecarTesouro = function(steps) { self.moveAndCheckTreasureInTheEnd(steps) };
 		var percorrerChecandoTesouro = function(steps) { self.movePlayerCheckingTreasure(steps); };
 
 		var nextCommand = this.executionStack.shift();

@@ -18,6 +18,11 @@ meiaVolta() {
 	girarParaDireita();
 } 
 
+andarEChecarTesouro(x){
+	andar(x)
+	checaTesouro()
+}
+
 percorrerChecandoTesouro(x) {
 	andar(1)
 	checarTesouro()

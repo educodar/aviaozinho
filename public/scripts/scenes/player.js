@@ -117,6 +117,21 @@ Player.prototype.turnAround = function(callback) {
 
 }
 
+Player.prototype.moveForwardAndCheckTreasureInTheEnd = function(steps, callback) {
+    var self = this;
+    var nextPosition = this.getNextPosition(steps);
+
+    if(this.isValidPosition(nextPosition.posX, nextPosition.posY)){
+        self.moveForward(steps, function(){
+            self.checkTreasure(callback);
+        });
+    }
+    else {
+        toastr.error('Não é possível mover '+steps+' espaços de onde o avião está');
+        callback();
+    }
+}
+
 Player.prototype.moveForwardCheckingTreasure = function(steps, count, callback) {
     var self = this;
     var nextPosition = this.getNextPosition(steps - count);
