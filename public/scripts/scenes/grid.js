@@ -12,12 +12,38 @@ var Grid = function () {
     self.treasures = [];
     self.searchedPositions = [];
 
-    self.treasures.push(new Treasure(self, {x:2, y:2}));
-    self.treasures.push(new Treasure(self, {x:3, y:6}));
-    self.treasures.push(new Treasure(self, {x:4, y:3}));
-    self.treasures.push(new Treasure(self, {x:5, y:3}));
-    self.treasures.push(new Treasure(self, {x:6, y:5}));
+    var treasuresPos = self.randomTreasurePositions(5);;
+
+    for (var i = 0; i < treasuresPos.length; i++) {
+        console.log(treasuresPos[i] + " e " + treasuresPos[i]);
+        self.treasures.push(new Treasure(self, treasuresPos[i]));
+    };
 };
+
+Grid.prototype.randomTreasurePositions = function(qtd) {
+    var positions = [];
+
+    var myIndexOf = function myIndexOf(p) {    
+        for (var i = 0; i < positions.length; i++) {
+            if (positions[i].x == p.x && positions[i].y == p.y) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    while (positions.length != qtd) {
+        var x = Math.floor(Math.random() * this.xAxisSize) + 1;
+        var y = Math.floor(Math.random() * this.yAxisSize) + 1;
+
+        if (myIndexOf({x:x, y:y}) == -1 && !(x == 1 || y == 1)){
+            positions.push({x:x, y:y});
+        }
+
+    }
+    return positions;
+
+}
 
 Grid.prototype.onRestart = function() {
     this.searchedPositions = [];
