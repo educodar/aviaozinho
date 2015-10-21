@@ -46,7 +46,6 @@
       function releaseCodeEditor() {
         $("#txtCommand").prop("disabled", false);
         $("#btnRun").prop("disabled", false);
-        //App.scene_controle.reiniciarScene();
       };
 
       App.loadImages();
@@ -59,6 +58,7 @@
       App.mouse = utils.captureMouse(App.display.canvas[0]);
 
       $( "#btnRun" ).click(function() {
+        App.scene_controle.reiniciarScene();
         var commands = $('#txtCommand').val().split('\n');
         if(commands.length > 0) {
           $("#btnRun").prop("disabled", true);
@@ -97,7 +97,7 @@
             <div id="gameArea">
               <canvas id="canvas" width="600" height="400"></canvas>
               <button id="btnRestart" type="button" class="btn btn-default glyphicon-repeat">Reiniciar</button>
-              <button id="btnRun" type="button" class="btn btn-success glyphicon-play">Executar</button>
+              <button id="btnRun" type="button" class="btn btn-success glyphicon-play">Executar Novamente</button>
             </div>
           </div>
         </div>
