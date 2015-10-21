@@ -53,7 +53,7 @@ var CommandInterface = function(callbackEndExecution) {
 		var andar = function(steps) { self.movePlayerForward(steps); };
 		var girarParaDireita = function() { self.rotatePlayer('dir'); };
 		var girarParaEsquerda = function() { self.rotatePlayer('esq'); };
-		var checarTesouro = function() {self.checkTreasure(); };
+		var checarTesouro = function() { self.checkTreasure(); };
 
 		var nextCommand = this.executionStack.shift();
 
@@ -64,7 +64,8 @@ var CommandInterface = function(callbackEndExecution) {
 			catch(err) {
 				if(err) {
 			    	toastr.error('Erro no comando: ' + nextCommand);
-					this.callbackEndExecution();
+					this.readyToExecute = true;
+           			this.endExecution();
 				}
 			}
 		} else {
