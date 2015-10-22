@@ -78,7 +78,7 @@ var CommandInterface = function(callbackEndExecution) {
 		var checarTesouro = function() { self.checkTreasure(); };
 		var meiaVolta = function() { self.turnAround(); };
 		var andarEChecarTesouro = function(steps) { self.moveAndCheckTreasureInTheEnd(steps) };
-		var percorrerChecandoTesouro = function(steps) { self.movePlayerCheckingTreasure(steps); };
+		var andarChecandoTesouro = function(steps) { self.movePlayerCheckingTreasure(steps); };
 
 		var nextCommand = this.executionStack.shift();
 

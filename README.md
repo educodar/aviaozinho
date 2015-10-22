@@ -23,7 +23,7 @@ andarEChecarTesouro(x){
 	checaTesouro()
 }
 
-percorrerChecandoTesouro(x) {
+andarChecandoTesouro(x) {
 	andar(1)
 	checarTesouro()
 	...
