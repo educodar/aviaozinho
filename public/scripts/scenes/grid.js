@@ -52,7 +52,7 @@ Grid.prototype.allTreasuresFound = function() {
     var self = this;
     var allTreasuresFound = true;
     for(var i = 0 ; i < self.treasures.length ; i++) {
-        if(self.treasures[i].found == false) {
+        if(self.treasures[i].found == false && self.treasures[i].isEmpty == false) {
             allTreasuresFound = false;
             break;
         }
