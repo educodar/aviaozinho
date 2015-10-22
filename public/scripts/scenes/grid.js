@@ -17,6 +17,12 @@ var Grid = function () {
     self.treasures.push(new Treasure(self, {x:4, y:3}));
     self.treasures.push(new Treasure(self, {x:5, y:3}));
     self.treasures.push(new Treasure(self, {x:6, y:5}));
+
+    var firstBaloon = Math.floor(Math.random(self.treasures.length));
+    var secondBaloon = Math.floor(Math.random(self.treasures.length));
+
+    self.treasures[firstBaloon].isEmpty = false;
+    self.treasures[secondBaloon].isEmpty = false;
 };
 
 Grid.prototype.onRestart = function() {

@@ -89,6 +89,7 @@ var CommandInterface = function(callbackEndExecution) {
 			catch(err) {
 				if(err) {
 			    	toastr.error('Erro no comando: ' + nextCommand);
+			    	this.executionStack = [];
 					this.readyToExecute = true;
            			this.endExecution();
 				}

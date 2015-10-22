@@ -8,6 +8,7 @@ var Treasure = function (grid, position) {
     this.gridPosX;
     this.gridPosY;
     this.found = false;
+    this.isEmpty = true;
 
     this.stateMachine = new StateMachine(this);
 
@@ -47,11 +48,15 @@ Treasure.prototype.update = function () {
 
 Treasure.prototype.draw = function () {
 	if(this.found) {
-		this.spriteSheet = new Spritesheet(SpriteData.load('baloon_sprite'));
+		if (!this.isEmpty){
+			this.spriteSheet = new Spritesheet(SpriteData.load('baloon_sprite'));
+			this.spriteSheet.draw(this);
+		}
 	} else {
 	    this.spriteSheet = new Spritesheet(SpriteData.load('cloud_sprite'));
+	    this.spriteSheet.draw(this);
 	}
-	this.spriteSheet.draw(this);
+	
 
 
 };

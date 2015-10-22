@@ -53,7 +53,9 @@ Player.prototype.alterarEstado = function (state, params) {
 };
 
 Player.prototype.isValidPosition = function(gridPosX, gridPosY) {
-    return (gridPosX <= this.grid.xAxisSize) && (gridPosY <= this.grid.yAxisSize) && (gridPosX > 0) && (gridPosY > 0);
+    var isInBoard = (gridPosX <= this.grid.xAxisSize) && (gridPosY <= this.grid.yAxisSize) && (gridPosX > 0) && (gridPosY > 0);
+    var isInteger = gridPosX % 1 === 0 && gridPosY % 1 === 0;
+    return isInBoard && isInteger;
 };
 
 Player.prototype.setPosition = function(gridPosX, gridPosY) {

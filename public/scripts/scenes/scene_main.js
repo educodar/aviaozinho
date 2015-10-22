@@ -20,7 +20,7 @@ var Scene_main = function () {
         if(self.grid.allTreasuresFound()) {
             toastr.success('Parabéns! Você encontrou todos os tesouros.', 'Educod@r');
         } else {
-            toastr.error('Ainda há tesouros a serem encontrados. Tente denovo.', 'Educod@r');
+            toastr.error('Ainda há tesouros a serem encontrados. Tente de novo.', 'Educod@r');
         }
     };
 };
