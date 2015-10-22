@@ -80,7 +80,11 @@ var CommandInterface = function(callbackEndExecution) {
 		var andarEChecarTesouro = function(steps) { self.moveAndCheckTreasureInTheEnd(steps) };
 		var andarChecandoTesouro = function(steps) { self.movePlayerCheckingTreasure(steps); };
 
-		var nextCommand = this.executionStack.shift();
+		var nextCommand = "";
+		//desconsider line breaks in the text area
+		while (nextCommand === "") {
+			nextCommand = this.executionStack.shift();
+		}
 
 		if(nextCommand) {
 			try {
