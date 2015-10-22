@@ -37,3 +37,8 @@ body {
 	margin-right: 195px;
 	margin-bottom: 15px;
 }
+
+p {
+	text-indent: 30px;
+	line-height: 80%;
+}
