@@ -38,6 +38,11 @@ body {
 	margin-bottom: 15px;
 }
 
+.command-list{
+	margin-left: 10px;
+	width:345px;
+}
+
 p {
 	text-indent: 30px;
 	line-height: 80%;
