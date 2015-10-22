@@ -5,3 +5,35 @@ textarea {
 	font-family: "Courier New", Times, serif;  
    	font-size: 14px;
 }
+
+body {
+	background: url("images/bkg.png") top repeat-x;
+}
+
+.description{
+	text-align: right;
+	width: 230px;
+	float: left;
+	margin: 58px 0 0 144px;
+}
+
+.description h3 {
+	color: #259ADE;
+	font-size: 22px;
+	line-height: 28px;
+}
+
+.glyphicon-play {
+	margin-left: 8px;
+}
+
+#gameArea {
+	height: 375px;
+	overflow: hidden;
+}
+
+.action-buttons-wrapper {
+	text-align: right;
+	margin-right: 195px;
+	margin-bottom: 15px;
+}

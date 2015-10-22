@@ -3,7 +3,15 @@
 <head>
   <meta name="viewport" content="width=device-width, user-scalable=no" />
   <title>ThoughtWorks - Educod@r</title>
-  <link href="bootstrap.min.css" rel="stylesheet">
+ <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
   <link href="style.css" rel="stylesheet" />
   <link href="toastr.min.css" rel="stylesheet"/>
 
@@ -78,6 +86,9 @@
       <div class="col-md-6">
         <img src="images/Logo.png">
       </div>
+      <div class="description">
+        <h3>Passeie pelas nuvens em busca de balões.</h3>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -90,7 +101,12 @@
           <div class="col-md-12">
             <div id="gameArea">
               <canvas id="canvas" width="600" height="400"></canvas>
-              <button id="btnRun" type="button" class="btn btn-success glyphicon-play">Executar</button>
+            </div>
+            <div class="action-buttons-wrapper">
+              <button id="btnRun" type="button" class="btn btn-success">
+                Executar
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+              </button>
             </div>
           </div>
         </div>
