@@ -1,7 +1,7 @@
 {
-  "name": "educodar",
-  "version": "0.0.1",
-  "description": "Educod@r",
+  "name": "@educodar/aviaozinho",
+  "version": "0.1.0",
+  "description": "Plane Game for Educodar",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adrdomeniconi/educodar.git"
+    "url": "https://github.com/educodar/aviaozinho.git"
   },
   "keywords": [
     "node",
