@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "assignees": ["jimmyandrade"],
+  "automerge": true,
+  "enabled": true,
+  "labels": ["dependencies", "renovate"],
+  "packageRules": [
+    {
+      "updateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "updateTypes": ["minor", "pin", "digest"],
+      "automerge": false
+    }
+  ],
+  "semanticCommits": true,
+  "unicodeEmoji": true,
+  "updateLockFiles": true
+}
